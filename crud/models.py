@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class Food(models.Model):
     name = models.CharField(max_length=100)
@@ -29,7 +30,8 @@ class Player(models.Model):
     age = models.IntegerField()
     role = models.CharField(max_length=100, choices=role_choices)
     country = models.CharField(max_length=100, choices=country_choices)
-    profile_pic = models.ImageField(upload_to="player/")
+    # profile_pic = models.ImageField(upload_to="player/")
+    profile_pic = CloudinaryField()
     is_captain = models.BooleanField(default=False)
     fav_food = models.ManyToManyField(Food)
 

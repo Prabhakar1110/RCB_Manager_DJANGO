@@ -14,6 +14,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Convert string to boolean
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+
+cloudinary.config( 
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),  
+    api_key=os.getenv("CLOUDINARY_API_KEY"),  
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")  
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
