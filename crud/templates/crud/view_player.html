@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}  
+Player Details
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'crud/css/style_crud.css' %}">
+<div class="container my-4">
+    <div class="text-center">
+        <h3 class="border-bottom border-2 d-inline-block">Player Details</h3>
+    </div>
+    <div class="text-end mb-4">
+        <a href="{% url 'crud:list_player' %}" class="btn btn-success custom_btn">Goto Home</a>
+    </div>
+    <div class="player_details_div rounded">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile_pic_div">
+                    {% if player.profile_pic %}
+                    <img class="profile_pic rounded" src="{{player.profile_pic.url}}" alt="{{player.name}}"></li>
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-9 p-3">
+                <ul>
+                    <li><span class="fields_style">Name:</span> {{player.name}}</li>
+                    <li><span class="fields_style">Age:</span> {{player.age}}</li>
+                    <li><span class="fields_style">Role:</span> {{player.role}}</li>
+                    <li><span class="fields_style">Country:</span> {{player.country}}</li>
+                    <li><span class="fields_style">Is Captain?:</span> 
+                        {% if player.is_captain == True %} Yes {% else %} No {% endif %}
+                    </li>
+                    <li><span class="fields_style">Fav Food:</span> {% for fd in player.fav_food.all %}{{fd.name}}{% if not forloop.last %},{% endif %}  {% endfor %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

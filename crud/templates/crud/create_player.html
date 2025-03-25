@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}  
+Create Player
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'crud/css/style_crud.css' %}">
+<div class="container my-4">
+    <div class="text-center">
+        <h3 class="border-bottom border-2 d-inline-block">Create Player</h3>
+    </div>
+    <div>
+        <p><span class="color_red">*</span>Mandatory fields</p>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateCreate()">
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_name" class="custom_label form-label">Name:<span class="color_red">*</span></label>
+                    {{form.name}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_age" class="custom_label form-label">Age:<span class="color_red">*</span></label>
+                    {{form.age}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_role" class="custom_label form-label">Role:<span class="color_red">*</span></label>
+                    <select class="form-select" id="id_role" name="role" required>
+                        <option value="" disabled selected>--Select--</option>
+                        {% for val, lbl in form.role.field.choices %}
+                        <option value="{{val}}">{{lbl}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="my-3">
+                    <label for="id_country" class="custom_label form-label">Country:<span class="color_red">*</span></label>
+                    <select name="country" id="id_country" class="form-select" required>
+                        <option value="" selected disabled>--Select--</option>
+                        {% for val2, lbl2 in form.country.field.choices %}
+                        <option value="{{val2}}">{{lbl2}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="my-3">
+                    <label for="id_profile_pic" class="custom_label form-label">Profile pic:<span class="color_red">*</span></label>
+                    {{form.profile_pic}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+                <div class="my-3">
+                    <label for="id_is_captain" class="form-label custom_label">Is Captain?:</label>
+                    {{form.is_captain}}
+                </div>
+            </div>
+            
+            <div class="col-md-2">
+                <div class="my-3">
+                    <label for="id_fav_food" class="custom_label form-label">Favourite Food:<span class="color_red">*</span></label>
+                    {{form.fav_food}}
+                </div>
+            </div>
+            
+        </div>
+        <div class="text-end">
+            <input type="submit" class="btn custom_btn btn-success" value="Create">
+        </div>
+
+    </form>
+</div>
+
+<script>
+    function validateCreate(){
+        favFood = document.getElementsByName("fav_food");
+        for(let i = 0;i < favFood.length; i++) {
+            if(favFood[i].checked === true) {
+                return true;
+            }
+        }
+        alert("Please select atleast one Favourite Food.")
+        return false;
+    }
+</script>
+{% endblock %}

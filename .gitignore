@@ -1,0 +1,34 @@
+# Environment Variables
+.env
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv_rcb/
+env/
+
+# Database Files
+db.sqlite3
+
+#collect static folder
+static_prod/
+# Django Static & Media Files
+media/
+
+# VS Code & IDE Configurations
+.vscode/
+.idea/
+
+# Migrations (Optional, if you don’t want to track auto-generated migrations)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Log Files
+*.log
+
+# Compiled C files
+*.so

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}  
+Players List
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'crud/css/style_crud.css' %}">
+<div class="container my-4">
+    <div class="text-center">
+        <h3 class="border-bottom border-2 d-inline-block">Players List</h3>
+    </div>
+    <div class="text-end mb-4">
+        <a href="{% url 'crud:create_player' %}" class="btn btn-success custom_btn">Create Player</a>
+    </div>
+    <div class="list_table_container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Role</th>
+                    <th class="player_country">Country</th>
+                    <th class="text-center player_action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in all_players %}
+                <tr>
+                    <td class="wid">{{forloop.counter}}. {{player.name}}</td>
+                    <td class="wid">{{player.role}}</td>
+                    <td class="player_country">{{player.country}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'crud:view_player' pk=player.pk %}" class="btn btn-info">View</a>
+                            <a href="{% url 'crud:update_player' pk=player.pk %}" class="btn btn-warning">Update</a>
+                            <a onclick="return confirm('Are you sure to delete: {{player.name}}')" href="{% url 'crud:delete_player' pk=player.pk %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td  class="text-center" colspan="4">No Data</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
