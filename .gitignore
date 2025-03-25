@@ -25,10 +25,6 @@ media/
 .vscode/
 .idea/
 
-# Migrations (Optional, if you don’t want to track auto-generated migrations)
-*/migrations/*.py
-*/migrations/*.pyc
-
 # Log Files
 *.log
 
