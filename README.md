@@ -12,7 +12,7 @@ Live at: https://rcb-crud-django.onrender.com/
     Technologies Used: 
     Frontend: HTML, CSS, Bootstrap5, JS, DTL
     Backend: Django Framework
-    DB: SQLite3 (PostgreSQL in Prod)
+    DB: SQLite3
 
 2. SDLC Phases:
 --------------
